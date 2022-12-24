@@ -53,6 +53,3 @@ try:
     take_inputs(URL)
 except:
     take_inputs(URL)
-    """
-    else:
-        dorno = input("Do you want to download this video ?                                                       (Y , N) \n")"""
