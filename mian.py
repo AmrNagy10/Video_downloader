@@ -6,8 +6,8 @@ URL = input("Enter Video URL : ")
 
 def files(URL):
     r = requests.get(URL)
-    # file name don't end to now
-    with open("Downlaoded\\testfile.pdf",'wb') as f:
+    save_as = input("Save as : ")
+    with open(f"Downlaoded\\{save_as}",'wb') as f:
         f.write(r.content)
 
 def video_ditels(URL):
