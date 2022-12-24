@@ -1,6 +1,7 @@
 import os
 from pytube import YouTube
 import requests
+import save_details
 
 URL = input("Enter Video URL : ")
 
@@ -17,19 +18,19 @@ def video_ditels(URL):
         strem = (str(YouTube(URL).streams.filter(progressive = True)).split(","))
         handel = strem[i].replace('<Stream:', '').replace('[', '').replace('>', '').replace("res=" , "").replace("\"" , "").split()
         print("Reslution of Video : " + handel[2] + "x")
-    save_or_not = input("Do you want to Save Ditels ?                                                      (Y , N)")
+    save_or_not = input("Do you want to Save Details ?                                                      (Y , N) \n")
     if save_or_not == ("Y" or "y"):
-        name= YouTube.title(URL) + "Detiles.text"
-        open(name , "w").write(f"title is : {name} \n channal name : {YouTube(URL).author}  \n Discribtion is : {YouTube(URL).description} \n Link for channal is : {YouTube(URL).channel_url}  \n rating is : {YouTube(URL).rating} , Linke for video is : {URL}")
+        name = YouTube(URL).title
+        save_details.save_details_fun(URL , name)
     dorno = input("Do you want to download this video ?                                                       (Y , N) \n")
-    if dorno == "Y" or "y":
+    if dorno == ("Y" or "y"):
         res = input("Enter Reslution ..... ?                                              plaes check it on video ditels after you enter \n")
         if "p" not in res:
             doneurl = res + "p"
             download(URL, doneurl)
         else:
             download(URL , res)
-    elif dorno == "N" or "n":
+    elif dorno == ("N" or "n"):
         print("ok ................ ;) ")
 
 def download(URL , reslu):
@@ -52,3 +53,6 @@ try:
     take_inputs(URL)
 except:
     take_inputs(URL)
+    """
+    else:
+        dorno = input("Do you want to download this video ?                                                       (Y , N) \n")"""
