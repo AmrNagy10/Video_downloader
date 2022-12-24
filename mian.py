@@ -22,23 +22,24 @@ def video_ditels(URL):
     if save_or_not == "Y" or "y":
         name = YouTube(URL).title
         save_details.save_details_fun(URL , name)
+
     dorno = input("Do you want to download this video ?                                                       (Y , N) \n")
-    if dorno == "Y" or "y":
+    if dorno == "Y" or dorno == "n":
         res = input("Enter Reslution ..... ?                                              plaes check it on video ditels after you enter \n")
         if "p" not in res:
             doneurl = res + "p"
             download(URL, doneurl)
         else:
             download(URL , res)
-    elif dorno == ("N" or "n"):
-        print("ok ................ ;) ")
+    elif dorno == "N" or dorno == "n":
+        print("ok ................ ;)")
 
 def download(URL , reslu):
     YouTube(URL).streams.get_by_resolution(resolution=reslu).download(output_path="Downlaoded\\")
     print("Done...</>")
 
 def take_inputs(URL):
-    test_link = URL.replace("https:" , "").replace(" " , "").split("/")
+    test_link = URL.replace("https:", "").replace(" ", "").split("/")
     if (("you" and "be") or ("youtube") or ("youtu.be")) in test_link[2]:
         video_ditels(URL)
     else:
