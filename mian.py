@@ -6,7 +6,8 @@ URL = input("Enter Video URL : ")
 
 def files(URL):
     r = requests.get(URL)
-    with open("testfile.pdf",'wb') as f:
+    # file name don't end to now
+    with open("Downlaoded\\testfile.pdf",'wb') as f:
         f.write(r.content)
 
 def video_ditels(URL):
@@ -16,6 +17,10 @@ def video_ditels(URL):
         strem = (str(YouTube(URL).streams.filter(progressive = True)).split(","))
         handel = strem[i].replace('<Stream:', '').replace('[', '').replace('>', '').replace("res=" , "").replace("\"" , "").split()
         print("Reslution of Video : " + handel[2] + "x")
+    save_or_not = input("Do you want to Save Ditels ?                                                      (Y , N)")
+    if save_or_not == ("Y" or "y"):
+        name= YouTube.title(URL) + "Detiles.text"
+        open(name , "w").write(f"title is : {name} \n channal name : {YouTube(URL).author}  \n Discribtion is : {YouTube(URL).description} \n Link for channal is : {YouTube(URL).channel_url}  \n rating is : {YouTube(URL).rating} , Linke for video is : {URL}")
     dorno = input("Do you want to download this video ?                                                       (Y , N) \n")
     if dorno == "Y" or "y":
         res = input("Enter Reslution ..... ?                                              plaes check it on video ditels after you enter \n")
@@ -28,9 +33,8 @@ def video_ditels(URL):
         print("ok ................ ;) ")
 
 def download(URL , reslu):
-    os.mkdir("Downlaoded")
     YouTube(URL).streams.get_by_resolution(resolution=reslu).download(output_path="Downlaoded\\")
-    print("Done>>> </>")
+    print("Done...</>")
 
 def take_inputs(URL):
     test_link = URL.replace("https:" , "").replace(" " , "").split("/")
@@ -43,4 +47,8 @@ def take_inputs(URL):
         elif ask == "N":
             files(URL)
 
-take_inputs(URL)
+try:
+    os.mkdir("Downlaoded")
+    take_inputs(URL)
+except:
+    take_inputs(URL)
