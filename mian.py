@@ -19,11 +19,11 @@ def video_ditels(URL):
         handel = strem[i].replace('<Stream:', '').replace('[', '').replace('>', '').replace("res=" , "").replace("\"" , "").split()
         print("Reslution of Video : " + handel[2] + "x")
     save_or_not = input("Do you want to Save Details ?                                                      (Y , N) \n")
-    if save_or_not == ("Y" or "y"):
+    if save_or_not == "Y" or "y":
         name = YouTube(URL).title
         save_details.save_details_fun(URL , name)
     dorno = input("Do you want to download this video ?                                                       (Y , N) \n")
-    if dorno == ("Y" or "y"):
+    if dorno == "Y" or "y":
         res = input("Enter Reslution ..... ?                                              plaes check it on video ditels after you enter \n")
         if "p" not in res:
             doneurl = res + "p"
